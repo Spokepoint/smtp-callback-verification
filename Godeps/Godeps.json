@@ -1,0 +1,11 @@
+{
+	"ImportPath": "bitbucket.org/GlassyMedia/smtp-callback-verification",
+	"GoVersion": "go1.2.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/ant0ine/go-json-rest/rest",
+			"Comment": "v2.0.1-11-ge9a4e2b",
+			"Rev": "e9a4e2b0d67bfe50d3754d74f4a668e64754039a"
+		}
+	]
+}
