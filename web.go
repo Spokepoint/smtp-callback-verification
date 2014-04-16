@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/ant0ine/go-json-rest/rest"
+	"log"
 	"net/http"
+	"os"
 )
 
 func newHandler() rest.ResourceHandler {
@@ -14,8 +16,15 @@ func newHandler() rest.ResourceHandler {
 }
 
 func main() {
+	PORT := os.Getenv("PORT")
+
 	handler := newHandler()
-	http.ListenAndServe(":8080", &handler)
+
+	log.Println("Listening on port " + PORT)
+	err := http.ListenAndServe(":"+PORT, &handler)
+	if err != nil {
+		log.Panic(err)
+	}
 }
 
 type Message struct {
