@@ -9,7 +9,7 @@ import (
 
 func main() {
 	domain := os.Args[1]
-	email := os.Args[2]
+	account := os.Args[2]
 	mx, _ := net.LookupMX(domain)
 	host := mx[0].Host
 	log.Println("Found MX Host: " + host)
@@ -23,7 +23,7 @@ func main() {
 	if err := c.Mail("check@verify-email.org"); err != nil {
 		log.Fatal(err)
 	}
-	if err := c.Rcpt(email); err != nil {
+	if err := c.Rcpt(account + "@" + domain); err != nil {
 		log.Println("Fail")
 	} else {
 		log.Println("Success")
