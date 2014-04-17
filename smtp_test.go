@@ -28,3 +28,29 @@ func TestVerifyEmail(t *testing.T) {
 		}
 	}
 }
+
+///// Benchmarks /////
+
+func BenchmarkVerifyEmail_Found(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		VerifyEmail("alexw@techcrunch.com")
+	}
+}
+
+func BenchmarkVerifyEmail_Capitalised(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		VerifyEmail("AlexW@techcrunch.com")
+	}
+}
+
+func BenchmarkVerifyEmail_NotFound(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		VerifyEmail("someRandomEmail43432@techcrunch.com")
+	}
+}
+
+func BenchmarkVerifyEmail_Blank(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		VerifyEmail("")
+	}
+}
