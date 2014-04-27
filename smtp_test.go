@@ -18,10 +18,11 @@ var tests = []testpair{
 
 func TestVerifyEmail(t *testing.T) {
 	for _, pair := range tests {
-		v, _ := VerifyEmail(pair.email)
+		v, err := VerifyEmail(pair.email)
 		if v != pair.valid {
 			t.Error(
-				"For", pair.email,
+				"Error Message:", err,
+				". For", pair.email,
 				"expected", pair.valid,
 				"got", v,
 			)
