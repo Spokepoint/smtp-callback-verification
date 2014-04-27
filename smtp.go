@@ -27,6 +27,8 @@ func VerifyEmail(email string) (isValid bool, err error) {
 	if err != nil {
 		return
 	}
+	defer c.Close()
+
 	err = c.Hello("verify-email.org")
 	if err != nil {
 		return
