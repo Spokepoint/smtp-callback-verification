@@ -27,7 +27,6 @@ func VerifyEmail(email string) (isValid bool, err error) {
 	if err != nil {
 		return
 	}
-	defer c.Close()
 
 	err = c.Hello("verify-email.org")
 	if err != nil {
@@ -37,9 +36,10 @@ func VerifyEmail(email string) (isValid bool, err error) {
 	if err != nil {
 		return
 	}
-	if err := c.Rcpt(email); err != nil {
-		return false, nil
-	} else {
-		return true, nil
+	if err := c.Rcpt(email); err == nil {
+		isValid = true
 	}
+
+	err = c.Quit()
+	return
 }
